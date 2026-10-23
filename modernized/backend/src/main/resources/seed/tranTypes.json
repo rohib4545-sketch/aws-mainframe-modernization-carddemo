@@ -1,0 +1,30 @@
+[
+ {
+  "typeCd": "01",
+  "desc": "Purchase"
+ },
+ {
+  "typeCd": "02",
+  "desc": "Payment"
+ },
+ {
+  "typeCd": "03",
+  "desc": "Credit"
+ },
+ {
+  "typeCd": "04",
+  "desc": "Authorization"
+ },
+ {
+  "typeCd": "05",
+  "desc": "Refund"
+ },
+ {
+  "typeCd": "06",
+  "desc": "Reversal"
+ },
+ {
+  "typeCd": "07",
+  "desc": "Adjustment"
+ }
+]

@@ -1,0 +1,92 @@
+[
+ {
+  "typeCd": "01",
+  "catCd": 1,
+  "desc": "Regular Sales Draft"
+ },
+ {
+  "typeCd": "01",
+  "catCd": 2,
+  "desc": "Regular Cash Advance"
+ },
+ {
+  "typeCd": "01",
+  "catCd": 3,
+  "desc": "Convenience Check Debit"
+ },
+ {
+  "typeCd": "01",
+  "catCd": 4,
+  "desc": "ATM Cash Advance"
+ },
+ {
+  "typeCd": "01",
+  "catCd": 5,
+  "desc": "Interest Amount"
+ },
+ {
+  "typeCd": "02",
+  "catCd": 1,
+  "desc": "Cash payment"
+ },
+ {
+  "typeCd": "02",
+  "catCd": 2,
+  "desc": "Electronic payment"
+ },
+ {
+  "typeCd": "02",
+  "catCd": 3,
+  "desc": "Check payment"
+ },
+ {
+  "typeCd": "03",
+  "catCd": 1,
+  "desc": "Credit to Account"
+ },
+ {
+  "typeCd": "03",
+  "catCd": 2,
+  "desc": "Credit to Purchase balance"
+ },
+ {
+  "typeCd": "03",
+  "catCd": 3,
+  "desc": "Credit to Cash balance"
+ },
+ {
+  "typeCd": "04",
+  "catCd": 1,
+  "desc": "Zero dollar authorization"
+ },
+ {
+  "typeCd": "04",
+  "catCd": 2,
+  "desc": "Online purchase authorization"
+ },
+ {
+  "typeCd": "04",
+  "catCd": 3,
+  "desc": "Travel booking authorization"
+ },
+ {
+  "typeCd": "05",
+  "catCd": 1,
+  "desc": "Refund credit"
+ },
+ {
+  "typeCd": "06",
+  "catCd": 1,
+  "desc": "Fraud reversal"
+ },
+ {
+  "typeCd": "06",
+  "catCd": 2,
+  "desc": "Non-fraud reversal"
+ },
+ {
+  "typeCd": "07",
+  "catCd": 1,
+  "desc": "Sales draft credit adjustment"
+ }
+]

@@ -1,0 +1,308 @@
+[
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "01",
+  "tranCatCd": 1,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "01",
+  "tranCatCd": 2,
+  "intRate": 25.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "01",
+  "tranCatCd": 3,
+  "intRate": 25.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "01",
+  "tranCatCd": 4,
+  "intRate": 25.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "02",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "02",
+  "tranCatCd": 2,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "02",
+  "tranCatCd": 3,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "03",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "03",
+  "tranCatCd": 2,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "03",
+  "tranCatCd": 3,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "04",
+  "tranCatCd": 1,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "04",
+  "tranCatCd": 2,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "04",
+  "tranCatCd": 3,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "05",
+  "tranCatCd": 1,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "06",
+  "tranCatCd": 1,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "06",
+  "tranCatCd": 2,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "A000000000",
+  "tranTypeCd": "07",
+  "tranCatCd": 1,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "01",
+  "tranCatCd": 1,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "01",
+  "tranCatCd": 2,
+  "intRate": 25.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "01",
+  "tranCatCd": 3,
+  "intRate": 25.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "01",
+  "tranCatCd": 4,
+  "intRate": 25.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "02",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "02",
+  "tranCatCd": 2,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "02",
+  "tranCatCd": 3,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "03",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "03",
+  "tranCatCd": 2,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "03",
+  "tranCatCd": 3,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "04",
+  "tranCatCd": 1,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "04",
+  "tranCatCd": 2,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "04",
+  "tranCatCd": 3,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "05",
+  "tranCatCd": 1,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "06",
+  "tranCatCd": 1,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "06",
+  "tranCatCd": 2,
+  "intRate": 15.0
+ },
+ {
+  "acctGroupId": "DEFAULT",
+  "tranTypeCd": "07",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "01",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "01",
+  "tranCatCd": 2,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "01",
+  "tranCatCd": 3,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "01",
+  "tranCatCd": 4,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "02",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "02",
+  "tranCatCd": 2,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "02",
+  "tranCatCd": 3,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "03",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "03",
+  "tranCatCd": 2,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "03",
+  "tranCatCd": 3,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "04",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "04",
+  "tranCatCd": 2,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "04",
+  "tranCatCd": 3,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "05",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "06",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "06",
+  "tranCatCd": 2,
+  "intRate": 0.0
+ },
+ {
+  "acctGroupId": "ZEROAPR",
+  "tranTypeCd": "07",
+  "tranCatCd": 1,
+  "intRate": 0.0
+ }
+]

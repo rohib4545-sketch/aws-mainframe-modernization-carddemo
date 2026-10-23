@@ -1,0 +1,543 @@
+{
+  "base": "http://localhost:8080",
+  "total": 89,
+  "passed": 89,
+  "failed": 0,
+  "score": 100.0,
+  "results": [
+    {
+      "feature": "Auth",
+      "name": "user sign-on returns token+profile",
+      "passed": true,
+      "detail": "code=200"
+    },
+    {
+      "feature": "Auth",
+      "name": "admin sign-on returns token, type A",
+      "passed": true,
+      "detail": "code=200"
+    },
+    {
+      "feature": "Auth",
+      "name": "wrong password rejected (COBOL msg)",
+      "passed": true,
+      "detail": "401: Wrong Password. Try again ..."
+    },
+    {
+      "feature": "Auth",
+      "name": "unknown user rejected",
+      "passed": true,
+      "detail": "401: User not found. Try again ..."
+    },
+    {
+      "feature": "Auth",
+      "name": "empty user id rejected",
+      "passed": true,
+      "detail": "400: Please enter User ID ..."
+    },
+    {
+      "feature": "Auth",
+      "name": "empty password rejected",
+      "passed": true,
+      "detail": "400: Please enter Password ..."
+    },
+    {
+      "feature": "Auth",
+      "name": "no token \u2192 401",
+      "passed": true,
+      "detail": "code=401"
+    },
+    {
+      "feature": "Auth",
+      "name": "invalid token \u2192 401 session expired",
+      "passed": true,
+      "detail": "code=401"
+    },
+    {
+      "feature": "Menus",
+      "name": "user menu has all 11 options",
+      "passed": true,
+      "detail": "got 11: ['Account View', 'Account Update', 'Credit Card List', 'Credit Card View']..."
+    },
+    {
+      "feature": "Menus",
+      "name": "user menu option numbering 1..11",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "feature": "Menus",
+      "name": "admin menu distinct & \u22656 options",
+      "passed": true,
+      "detail": "8: ['User List (Security)', 'User Add (Security)', 'User Update (Security)', 'User Delete (Security)', 'Transaction Type List/Update (Db2)', 'Transaction Type Maintenance (Db2)', 'Batch: Interest Calculation', 'Batch: Account Statement']"
+    },
+    {
+      "feature": "Menus",
+      "name": "system date endpoint",
+      "passed": true,
+      "detail": "{'date': '2026-10-23', 'timestamp': '2026-10-23 16:27:43.106540'}"
+    },
+    {
+      "feature": "Account View",
+      "name": "account 1 view: joined acct+customer+cards",
+      "passed": true,
+      "detail": "bal=194.0 cards=1"
+    },
+    {
+      "feature": "Account View",
+      "name": "account 1 balance 194.00 matches seed",
+      "passed": true,
+      "detail": "194.0"
+    },
+    {
+      "feature": "Account View",
+      "name": "lookup account by card number",
+      "passed": true,
+      "detail": "code=200"
+    },
+    {
+      "feature": "Account View",
+      "name": "missing account \u2192 error",
+      "passed": true,
+      "detail": "404: Did not find this account in account master file"
+    },
+    {
+      "feature": "Account Update",
+      "name": "update first name only (others keep)",
+      "passed": true,
+      "detail": "200: Update of record successful"
+    },
+    {
+      "feature": "Account Update",
+      "name": "invalid active status rejected",
+      "passed": true,
+      "detail": "400: Account Active Status must be Y or N"
+    },
+    {
+      "feature": "Account Update",
+      "name": "SSN must be 9 digits",
+      "passed": true,
+      "detail": "400: SSN must be a 9 digit number"
+    },
+    {
+      "feature": "Account Update",
+      "name": "FICO must be 3 digits",
+      "passed": true,
+      "detail": "400: FICO Score must be a 3 digit number"
+    },
+    {
+      "feature": "Account Update",
+      "name": "'*' convention keeps original value",
+      "passed": true,
+      "detail": "fname=TESTFIRST"
+    },
+    {
+      "feature": "Cards",
+      "name": "card list page size 7 (COBOL)",
+      "passed": true,
+      "detail": "count=7"
+    },
+    {
+      "feature": "Cards",
+      "name": "card list has next page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "feature": "Cards",
+      "name": "card list page 2 prev flag",
+      "passed": true,
+      "detail": "page1=7"
+    },
+    {
+      "feature": "Cards",
+      "name": "acct filter must be 11 digits",
+      "passed": true,
+      "detail": "400: ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER"
+    },
+    {
+      "feature": "Cards",
+      "name": "card filter must be 16 digits",
+      "passed": true,
+      "detail": "400: CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER"
+    },
+    {
+      "feature": "Cards",
+      "name": "11-digit acct filter narrows list",
+      "passed": true,
+      "detail": "count=1"
+    },
+    {
+      "feature": "Cards",
+      "name": "card view returns card+acct+customer",
+      "passed": true,
+      "detail": "code=200"
+    },
+    {
+      "feature": "Cards",
+      "name": "unknown card \u2192 error",
+      "passed": true,
+      "detail": "404: Did not find cards for this search condition"
+    },
+    {
+      "feature": "Cards",
+      "name": "expiry month >12 rejected",
+      "passed": true,
+      "detail": "400: Card expiry month must be between 1 and 12"
+    },
+    {
+      "feature": "Cards",
+      "name": "expiry year out of range rejected",
+      "passed": true,
+      "detail": "400: Invalid card expiry year"
+    },
+    {
+      "feature": "Cards",
+      "name": "card status must be Y/N",
+      "passed": true,
+      "detail": "400: Card Active Status must be Y or N"
+    },
+    {
+      "feature": "Cards",
+      "name": "valid card update works",
+      "passed": true,
+      "detail": "200: Update of record successful"
+    },
+    {
+      "feature": "Cards",
+      "name": "card update persisted (expiry)",
+      "passed": true,
+      "detail": "exp=2030-12-09"
+    },
+    {
+      "feature": "Transactions",
+      "name": "transaction list page size 10",
+      "passed": true,
+      "detail": "count=10"
+    },
+    {
+      "feature": "Transactions",
+      "name": "transaction list sorted by id",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "feature": "Transactions",
+      "name": "browse from start id (COBOL STARTBR)",
+      "passed": true,
+      "detail": "0000000010229018"
+    },
+    {
+      "feature": "Transactions",
+      "name": "transaction view detail",
+      "passed": true,
+      "detail": "code=200"
+    },
+    {
+      "feature": "Transactions",
+      "name": "transaction not found msg",
+      "passed": true,
+      "detail": "404: Transaction ID NOT found..."
+    },
+    {
+      "feature": "Transaction Add",
+      "name": "add: confirm gate first (requiresConfirmation)",
+      "passed": true,
+      "detail": "200: {'message': 'Confirm to add this transaction...', 'requiresConfirmation': True}"
+    },
+    {
+      "feature": "Transaction Add",
+      "name": "add: missing fields \u2192 validation error",
+      "passed": true,
+      "detail": "400: Account or Card Number must be entered"
+    },
+    {
+      "feature": "Transaction Add",
+      "name": "add: invalid card \u2192 error 100-class",
+      "passed": true,
+      "detail": "400: INVALID CARD NUMBER FOUND"
+    },
+    {
+      "feature": "Transaction Add",
+      "name": "add: OVERLIMIT rejected",
+      "passed": true,
+      "detail": "400: OVERLIMIT TRANSACTION"
+    },
+    {
+      "feature": "Transaction Add",
+      "name": "add: valid post returns new tran id",
+      "passed": true,
+      "detail": "tran=0000000996722788"
+    },
+    {
+      "feature": "Transaction Add",
+      "name": "posting updated account balance (+25.50)",
+      "passed": true,
+      "detail": "147.0\u2192172.5"
+    },
+    {
+      "feature": "Transaction Add",
+      "name": "posted tran retrievable w/ fields",
+      "passed": true,
+      "detail": "code=200"
+    },
+    {
+      "feature": "Reports",
+      "name": "monthly report runs",
+      "passed": true,
+      "detail": "200: Monthly"
+    },
+    {
+      "feature": "Reports",
+      "name": "yearly report: Jan1\u2192Dec31",
+      "passed": true,
+      "detail": "2026-01-01\u21922026-12-31"
+    },
+    {
+      "feature": "Reports",
+      "name": "custom report includes posted tran + seed",
+      "passed": true,
+      "detail": "count=301"
+    },
+    {
+      "feature": "Reports",
+      "name": "custom report bad date rejected",
+      "passed": true,
+      "detail": "400: Start Date - Not a valid date"
+    },
+    {
+      "feature": "Reports",
+      "name": "start>end range rejected",
+      "passed": true,
+      "detail": "400: End Date must not be before Start Date"
+    },
+    {
+      "feature": "Bill Payment",
+      "name": "bill pay view returns balance",
+      "passed": true,
+      "detail": "bal=40.0"
+    },
+    {
+      "feature": "Bill Payment",
+      "name": "invalid confirm \u2192 Y/N error",
+      "passed": true,
+      "detail": "400: Invalid value. Valid values are (Y/N)..."
+    },
+    {
+      "feature": "Bill Payment",
+      "name": "confirm N \u2192 payment cancelled (COBOL exits screen)",
+      "passed": true,
+      "detail": "200: Payment cancelled."
+    },
+    {
+      "feature": "Bill Payment",
+      "name": "confirm Y \u2192 payment posted, bal\u21920",
+      "passed": true,
+      "detail": "200: {'newBalance': 0.0, 'message': 'Payment successful. Your Transaction ID is 0000000996722789', 'transaction': {'tranId': '0000000996722789', 'typeCd': '02', 'catCd': 2, 'source': 'POS TERM', 'desc': 'BILL PAYMENT - ONLINE', 'amt': 40.0, 'merchantId': 999999999, 'merchantName': 'BILL PAYMENT', 'merchantCity': 'N/A', 'merchantZip': 'N/A', 'cardNum': '2988091353094312', 'origTs': '2026-10-23 16:27:43.308126', 'procTs': '2026-10-23 16:27:43.308126'}}"
+    },
+    {
+      "feature": "Bill Payment",
+      "name": "account 4 balance now 0.00",
+      "passed": true,
+      "detail": "0.0"
+    },
+    {
+      "feature": "Bill Payment",
+      "name": "zero balance \u2192 nothing to pay (COBOL err msg)",
+      "passed": true,
+      "detail": "400: You have nothing to pay..."
+    },
+    {
+      "feature": "Admin Users",
+      "name": "admin user list (10/page)",
+      "passed": true,
+      "detail": "count=10"
+    },
+    {
+      "feature": "Admin Users",
+      "name": "non-admin \u2192 403 admin only",
+      "passed": true,
+      "detail": "403: No access - Admin Only option..."
+    },
+    {
+      "feature": "Admin Users",
+      "name": "add user works",
+      "passed": true,
+      "detail": "200: User TESTU01 has been added ..."
+    },
+    {
+      "feature": "Admin Users",
+      "name": "dup user id rejected",
+      "passed": true,
+      "detail": "400: User ID already exist..."
+    },
+    {
+      "feature": "Admin Users",
+      "name": "empty first name rejected",
+      "passed": true,
+      "detail": "400: First Name can NOT be empty..."
+    },
+    {
+      "feature": "Admin Users",
+      "name": "user type must be A or U",
+      "passed": true,
+      "detail": "400: User Type must be A or U"
+    },
+    {
+      "feature": "Admin Users",
+      "name": "user view hides password",
+      "passed": true,
+      "detail": "keys=['firstName', 'lastName', 'userType', 'userId']"
+    },
+    {
+      "feature": "Admin Users",
+      "name": "update user works",
+      "passed": true,
+      "detail": "200: User TESTU01 has been updated ..."
+    },
+    {
+      "feature": "Admin Users",
+      "name": "self-delete blocked",
+      "passed": true,
+      "detail": "400: Cannot delete the currently signed on user"
+    },
+    {
+      "feature": "Admin Users",
+      "name": "delete user works",
+      "passed": true,
+      "detail": "200: User TESTU01 has been deleted ..."
+    },
+    {
+      "feature": "Admin Users",
+      "name": "deleted user cannot sign on",
+      "passed": true,
+      "detail": "code=401"
+    },
+    {
+      "feature": "Tran Types",
+      "name": "tran type list \u22657",
+      "passed": true,
+      "detail": "count=7"
+    },
+    {
+      "feature": "Tran Types",
+      "name": "tran categories for type 01",
+      "passed": true,
+      "detail": "count=5"
+    },
+    {
+      "feature": "Tran Types",
+      "name": "add tran type",
+      "passed": true,
+      "detail": "200: None"
+    },
+    {
+      "feature": "Tran Types",
+      "name": "dup tran type rejected",
+      "passed": true,
+      "detail": "400: Tran Type already exist..."
+    },
+    {
+      "feature": "Tran Types",
+      "name": "type cd must be 2 digits",
+      "passed": true,
+      "detail": "400: Type CD must be a 2 digit code"
+    },
+    {
+      "feature": "Tran Types",
+      "name": "update tran type",
+      "passed": true,
+      "detail": "200: {'typeCd': '99', 'desc': 'UPDATED TYPE'}"
+    },
+    {
+      "feature": "Tran Types",
+      "name": "tran type not found \u2192 error",
+      "passed": true,
+      "detail": "404: Tran Type NOT found..."
+    },
+    {
+      "feature": "Tran Types",
+      "name": "delete tran type",
+      "passed": true,
+      "detail": "200: Tran Type 99 has been deleted ..."
+    },
+    {
+      "feature": "Batch",
+      "name": "interest calc processes all tcatbal recs",
+      "passed": true,
+      "detail": "200: {'recordsProcessed': 50, 'details': [{'acctId': 1, 'tranId': '0000000996722790', 'amt': 0.0}, {'acctId': 2, 'tranId': '0000000996722791', 'amt': 0.0},"
+    },
+    {
+      "feature": "Batch",
+      "name": "interest tran posted (type 01 cat 5, source System)",
+      "passed": true,
+      "detail": "200: {'tranId': '0000000996722790', 'typeCd': '01', 'catCd': 5, 'source': 'System', 'desc': 'Int. for a/c 1', 'amt': 0.0, 'merchantId': 0, 'merchantName': None, 'merchantCity': None, 'merchantZip': None, 'cardNum': '9680294154603697', 'origTs': '2026-10-23 16:27:43.388045', 'procTs': '2026-10-23 16:27:43.388045'}"
+    },
+    {
+      "feature": "Batch",
+      "name": "interest calc is admin-only",
+      "passed": true,
+      "detail": "code=403"
+    },
+    {
+      "feature": "Batch",
+      "name": "statement generated w/ header+totals",
+      "passed": true,
+      "detail": "len=1438 count=7"
+    },
+    {
+      "feature": "Batch",
+      "name": "statement bad acct \u2192 error",
+      "passed": true,
+      "detail": "404: Account ID NOT found..."
+    },
+    {
+      "feature": "Authorizations",
+      "name": "auth summary grouped by account",
+      "passed": true,
+      "detail": "accts=8"
+    },
+    {
+      "feature": "Authorizations",
+      "name": "auth detail rows for account",
+      "passed": true,
+      "detail": "rows=1"
+    },
+    {
+      "feature": "Authorizations",
+      "name": "match authorization \u2192 M",
+      "passed": true,
+      "detail": "200: Authorization matched successfully"
+    },
+    {
+      "feature": "Authorizations",
+      "name": "dup match rejected",
+      "passed": true,
+      "detail": "400: Authorization already matched..."
+    },
+    {
+      "feature": "Authorizations",
+      "name": "mark fraud Y",
+      "passed": true,
+      "detail": "200: Authorization reported as fraud"
+    },
+    {
+      "feature": "Authorizations",
+      "name": "purge authorizations job",
+      "passed": true,
+      "detail": "200: {'message': 'Purged 0 expired authorizations', 'purged': 0, 'cutoffDate': '1926-11-17'}"
+    },
+    {
+      "feature": "Auth",
+      "name": "logout ok",
+      "passed": true,
+      "detail": "code=200"
+    },
+    {
+      "feature": "Auth",
+      "name": "token dead after logout",
+      "passed": true,
+      "detail": "code=401"
+    }
+  ]
+}

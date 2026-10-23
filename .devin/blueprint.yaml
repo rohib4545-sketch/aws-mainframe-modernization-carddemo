@@ -1,0 +1,26 @@
+# Java 17 is preinstalled. Install Maven + Node 20 used by the modernized app and set PATH.
+initialize: |
+  curl -fsSL https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz | sudo tar -xz -C /opt
+  curl -fsSL https://nodejs.org/dist/v20.19.0/node-v20.19.0-linux-x64.tar.xz | sudo tar -xJ -C /opt
+  mkdir -p ~/.m2
+  printf '%s\n' '<settings><mirrors><mirror><id>gcs-central</id><mirrorOf>central</mirrorOf><url>https://maven-central.storage-download.googleapis.com/maven2/</url></mirror></mirrors></settings>' > ~/.m2/settings.xml
+  echo 'PATH=/opt/apache-maven-3.9.9/bin:/opt/node-v20.19.0-linux-x64/bin:$PATH' >> $ENVRC
+maintenance: |
+  (cd modernized/frontend && npm install)
+  (cd modernized/backend && mvn -q -DskipTests package)
+knowledge:
+  - name: build
+    contents: |
+      # backend: (cd modernized/backend && mvn package -DskipTests)
+      # frontend: (cd modernized/frontend && npm run build)
+  - name: run
+    contents: |
+      # java -jar modernized/backend/target/carddemo-backend-1.0.0.jar  → API on :8080
+      # (cd modernized/frontend && npm run dev)                        → UI on :5173, proxies /api to 8080
+  - name: test
+    contents: |
+      # python3 modernized/tests/functional_tests.py  (backend must be running; reseeds H2 on restart)
+  - name: notes
+    contents: |
+      # Modernized React+Spring Boot version of CardDemo lives under modernized/ (currently uncommitted).
+      # Spring Boot 3.3.5 + H2 in-memory; logins ADMIN001/PASSWORD (admin), USER0001/PASSWORD (user).

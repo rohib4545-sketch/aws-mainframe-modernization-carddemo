@@ -1,0 +1,37 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Courier New', ui-monospace, monospace; background: #0d1117; color: #c9d1d9; }
+.screen { max-width: 980px; margin: 24px auto; border: 1px solid #30363d; border-radius: 8px; background: #161b22; overflow: hidden; }
+.hdr { display: flex; justify-content: space-between; padding: 4px 14px; font-size: 14px; }
+.hdr .t1 { color: #58a6ff; font-weight: bold; }
+.hdr .t2 { color: #8b949e; }
+.hdr .dim { color: #6e7681; }
+.body { padding: 18px 14px; min-height: 200px; }
+.msg { padding: 6px 14px; min-height: 30px; border-top: 1px solid #30363d; font-size: 14px; }
+.msg.err { color: #f85149; }
+.msg.ok { color: #3fb950; }
+.ftr { display: flex; gap: 24px; padding: 6px 14px; border-top: 1px solid #30363d; color: #8b949e; font-size: 13px; }
+.ftr .pf { cursor: pointer; color: #58a6ff; }
+.field { display: flex; align-items: center; gap: 10px; margin: 7px 0; }
+.field label { width: 240px; text-align: right; color: #8b949e; font-size: 14px; }
+.field .fv { flex: 1; }
+.field .ro { color: #d2a8ff; padding: 4px 6px; }
+input, select, textarea { background: #0d1117; color: #7ee787; border: 1px solid #30363d; padding: 6px 8px; font-family: inherit; font-size: 14px; border-radius: 4px; }
+input:focus, select:focus { outline: 1px solid #58a6ff; }
+button { background: #21262d; color: #58a6ff; border: 1px solid #30363d; padding: 6px 14px; font-family: inherit; font-size: 14px; cursor: pointer; border-radius: 4px; margin-right: 8px; }
+button:hover:not(:disabled) { background: #30363d; }
+button:disabled { opacity: 0.4; cursor: default; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; }
+th, td { border: 1px solid #30363d; padding: 5px 8px; text-align: left; }
+th { background: #21262d; color: #58a6ff; }
+tr:hover td { background: #1c2128; }
+.menu-opts { margin: 20px 0; }
+.menu-opts div { padding: 6px 12px; cursor: pointer; font-size: 15px; }
+.menu-opts div:hover { background: #21262d; }
+.menu-opts .num { color: #d2a8ff; display: inline-block; width: 40px; }
+.pager { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+.inline-err { color: #f85149; }
+.center-title { text-align: center; color: #58a6ff; font-size: 20px; margin: 8px 0 18px; }
+h3.sect { color: #d2a8ff; border-bottom: 1px solid #30363d; padding-bottom: 4px; }
+a { color: #58a6ff; }
+pre.stmt { background: #0d1117; border: 1px solid #30363d; padding: 12px; overflow-x: auto; color: #7ee787; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; }
