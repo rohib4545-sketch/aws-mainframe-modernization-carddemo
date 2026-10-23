@@ -234,7 +234,7 @@ export function BatchInterest() {
     <Screen tranId="CBIN" program="CBACT04C" title="Interest Calculation" error={err} onBack={() => nav('/admin/menu')}>
       <p>Compute monthly interest across all account groups and post interest transactions (equivalent of batch job CBACT04C / INTCALC).</p>
       <button onClick={run}>Run Interest Calculation</button>
-      {r && <div className="msg ok">Interest transactions written: {r.transactionsWritten}, total interest: {r.totalInterest}</div>}
+      {r && <div className="msg ok">Interest transactions written: {r.interestTransactions}, total interest: {r.totalInterest}</div>}
     </Screen>
   )
 }

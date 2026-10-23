@@ -16,7 +16,7 @@ export default function Login() {
     try {
       const s = await api.post('/api/auth/login', { userId, password })
       setSession(s)
-      nav(s.userType === 'A' ? '/admin/menu' : '/menu')
+      nav(s.userType === 'A' ? '/admin/menu' : '/menu', { replace: true })
     } catch (ex) {
       setErr(ex.message)
     }
