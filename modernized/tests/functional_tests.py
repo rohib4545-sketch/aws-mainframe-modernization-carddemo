@@ -3,9 +3,10 @@
 covering the same functions the CICS/COBOL application exposed.
 Run: python3 functional_tests.py [base_url]
 """
-import json, sys, urllib.request, urllib.error, urllib.parse
+import json, os, sys, urllib.request, urllib.error, urllib.parse
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else 'http://localhost:8080'
+RESULTS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'results.json')
 results = []          # (feature, name, passed, detail)
 issues_resolved = []
 issues_pending = []
@@ -354,7 +355,7 @@ for feat, name, ok, detail in results:
 print(f'\n{"="*72}')
 print(f'TOTAL: {total}  PASSED: {passed}  FAILED: {failed}  SCORE: {score}%')
 print(f'{"="*72}')
-with open('/home/ubuntu/repos/aws-mainframe-modernization-carddemo/modernized/tests/results.json', 'w') as fp:
+with open(RESULTS_FILE, 'w') as fp:
     json.dump({'base': BASE, 'total': total, 'passed': passed, 'failed': failed, 'score': score,
                'results': [{'feature': f, 'name': n, 'passed': p, 'detail': dt} for f, n, p, dt in results]}, fp, indent=2)
 sys.exit(0 if failed == 0 else 1)

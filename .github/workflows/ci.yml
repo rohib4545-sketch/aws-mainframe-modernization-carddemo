@@ -1,0 +1,251 @@
+name: CI
+
+# Quality checks, unit tests and Docker builds run on every push and on PRs
+# targeting main. GHCR publishing is gated to pushes on main only, so feature
+# branches validate the full pipeline without publishing images.
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  checks: write          # dorny/test-reporter publishes test check-runs
+  packages: write        # GHCR push (main only)
+
+env:
+  BACKEND_DIR: modernized/backend
+  FRONTEND_DIR: modernized/frontend
+
+jobs:
+  # ---------- Automated code review ----------
+  backend-quality:
+    name: Backend code quality (checkstyle)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Checkstyle
+        working-directory: ${{ env.BACKEND_DIR }}
+        run: mvn -B checkstyle:check
+      - name: Upload checkstyle report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkstyle-report-backend
+          path: ${{ env.BACKEND_DIR }}/target/checkstyle-result.xml
+          if-no-files-found: ignore
+
+  frontend-quality:
+    name: Frontend code quality (oxlint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: ${{ env.FRONTEND_DIR }}/package-lock.json
+      - name: Install
+        working-directory: ${{ env.FRONTEND_DIR }}
+        run: npm ci
+      - name: Lint (annotated on PRs; errors fail the gate, warnings annotate)
+        working-directory: ${{ env.FRONTEND_DIR }}
+        run: npx oxlint --format=github
+      - name: Lint report artifact (checkstyle XML)
+        if: always()
+        working-directory: ${{ env.FRONTEND_DIR }}
+        run: npx oxlint --format=checkstyle > lint-report.xml || true
+      - name: Upload lint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-report-frontend
+          path: ${{ env.FRONTEND_DIR }}/lint-report.xml
+          if-no-files-found: ignore
+
+  # ---------- Unit tests ----------
+  backend-test:
+    name: Backend unit tests (JUnit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Test
+        working-directory: ${{ env.BACKEND_DIR }}
+        run: mvn -B test
+      - name: Publish test report
+        if: always()
+        uses: dorny/test-reporter@v2
+        with:
+          name: backend-tests
+          path: ${{ env.BACKEND_DIR }}/target/surefire-reports/TEST-*.xml
+          reporter: java-junit
+      - name: Upload surefire reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports-backend
+          path: ${{ env.BACKEND_DIR }}/target/surefire-reports/
+          if-no-files-found: ignore
+
+  frontend-test:
+    name: Frontend unit tests (vitest) + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: ${{ env.FRONTEND_DIR }}/package-lock.json
+      - name: Install
+        working-directory: ${{ env.FRONTEND_DIR }}
+        run: npm ci
+      - name: Unit tests
+        working-directory: ${{ env.FRONTEND_DIR }}
+        env:
+          VITEST_JUNIT: '1'
+        run: npm test
+      - name: Publish test report
+        if: always()
+        uses: dorny/test-reporter@v2
+        with:
+          name: frontend-tests
+          path: ${{ env.FRONTEND_DIR }}/reports/junit.xml
+          reporter: jest-junit
+      - name: Production build sanity check
+        working-directory: ${{ env.FRONTEND_DIR }}
+        run: npm run build
+      - name: Upload vitest reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitest-reports-frontend
+          path: ${{ env.FRONTEND_DIR }}/reports/
+          if-no-files-found: ignore
+
+  # ---------- Functional tests (existing Python E2E suite) ----------
+  functional-test:
+    name: Functional tests (API end-to-end)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Build backend jar
+        working-directory: ${{ env.BACKEND_DIR }}
+        run: mvn -B -q package -DskipTests
+      - name: Start API and wait for readiness
+        working-directory: ${{ env.BACKEND_DIR }}
+        run: |
+          java -jar target/carddemo-backend-*.jar > backend.log 2>&1 &
+          for i in $(seq 1 90); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -X POST http://localhost:8080/api/auth/login \
+                     -H 'Content-Type: application/json' -d '{}')
+            [ "$code" != "000" ] && break
+            sleep 2
+          done
+          sleep 5   # DataLoader finishes seeding shortly after the port opens
+          cat backend.log | tail -20
+      - name: Run functional suite
+        run: python3 modernized/tests/functional_tests.py http://localhost:8080
+      - name: Upload functional results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: functional-test-results
+          path: |
+            modernized/tests/results.json
+            modernized/backend/backend.log
+          if-no-files-found: ignore
+
+  # ---------- Docker image builds (no push on feature branches) ----------
+  docker-build:
+    name: Docker builds (backend + frontend)
+    runs-on: ubuntu-latest
+    needs: [backend-quality, frontend-quality, backend-test, frontend-test]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ env.BACKEND_DIR }}
+          push: false
+          tags: carddemo-backend:ci
+          cache-from: type=gha,scope=backend
+          cache-to: type=gha,scope=backend,mode=max
+      - name: Build frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ env.FRONTEND_DIR }}
+          push: false
+          tags: carddemo-frontend:ci
+          cache-from: type=gha,scope=frontend
+          cache-to: type=gha,scope=frontend,mode=max
+
+  # ---------- GHCR publish (main branch only) ----------
+  publish-ghcr:
+    name: Publish images to GHCR
+    runs-on: ubuntu-latest
+    needs: [backend-quality, frontend-quality, backend-test, frontend-test, docker-build]
+    # Never publish from pull requests or feature branches — pushes to main only.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Backend image metadata
+        id: meta-backend
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/backend
+          tags: |
+            type=sha,prefix=
+            type=raw,value=latest
+      - name: Push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ env.BACKEND_DIR }}
+          push: true
+          tags: ${{ steps.meta-backend.outputs.tags }}
+          labels: ${{ steps.meta-backend.outputs.labels }}
+          cache-from: type=gha,scope=backend
+      - name: Frontend image metadata
+        id: meta-frontend
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/frontend
+          tags: |
+            type=sha,prefix=
+            type=raw,value=latest
+      - name: Push frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ env.FRONTEND_DIR }}
+          push: true
+          tags: ${{ steps.meta-frontend.outputs.tags }}
+          labels: ${{ steps.meta-frontend.outputs.labels }}
+          cache-from: type=gha,scope=frontend
+      - name: Image summary
+        run: |
+          echo "Published:" >> $GITHUB_STEP_SUMMARY
+          echo "- ghcr.io/${{ github.repository }}/backend:${GITHUB_SHA::7} (+ latest)" >> $GITHUB_STEP_SUMMARY
+          echo "- ghcr.io/${{ github.repository }}/frontend:${GITHUB_SHA::7} (+ latest)" >> $GITHUB_STEP_SUMMARY
