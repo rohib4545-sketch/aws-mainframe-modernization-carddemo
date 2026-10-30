@@ -33,6 +33,7 @@ tr:hover td { background: #1c2128; }
 .center-title { text-align: center; color: #58a6ff; font-size: 20px; margin: 8px 0 18px; }
 h3.sect { color: #d2a8ff; border-bottom: 1px solid #30363d; padding-bottom: 4px; }
 a { color: #58a6ff; }
+.legend { color: #6e7681; font-size: 12px; }
 pre.stmt { background: #0d1117; border: 1px solid #30363d; padding: 12px; overflow-x: auto; color: #7ee787; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; }
 
@@ -51,6 +52,7 @@ body.theme-user button:disabled { opacity: 0.45; }
 body.theme-user .msg.err { color: #8b0000; }
 body.theme-user .msg.ok { color: #0b4d1f; }
 body.theme-user tr:hover td, body.theme-user .menu-opts div:hover { background: #a6a6a6; color: #1b1f24; }
+body.theme-user .legend { color: #2f363d; }
 
 /* Admin theme (userType 'A'): full red background + black buttons. */
 body.theme-admin { background: #a80000; color: #f0f2f4; }
@@ -66,3 +68,4 @@ body.theme-admin button:disabled { opacity: 0.45; }
 body.theme-admin .msg.err { color: #ffb3b3; }
 body.theme-admin .msg.ok { color: #b3f5c9; }
 body.theme-admin tr:hover td, body.theme-admin .menu-opts div:hover { background: #c23333; }
+body.theme-admin .legend { color: #ffd9d9; }
