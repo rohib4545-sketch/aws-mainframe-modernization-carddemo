@@ -14,7 +14,8 @@ public class AuthorizationController {
     private final AuthorizationService auths;
 
     public AuthorizationController(AuthService auth, AuthorizationService auths) {
-        this.auth = auth; this.auths = auths;
+        this.auth = auth;
+        this.auths = auths;
     }
 
     @GetMapping

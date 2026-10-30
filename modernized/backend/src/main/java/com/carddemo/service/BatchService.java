@@ -30,9 +30,14 @@ public class BatchService {
                         CardXrefRepository xrefs, DisclosureGroupRepository disGroups,
                         TranRecordRepository trans, CustomerRepository customers,
                         PendingAuthRepository auths, TransactionService tranService) {
-        this.catBals = catBals; this.accounts = accounts; this.xrefs = xrefs;
-        this.disGroups = disGroups; this.trans = trans; this.customers = customers;
-        this.auths = auths; this.tranService = tranService;
+        this.catBals = catBals;
+        this.accounts = accounts;
+        this.xrefs = xrefs;
+        this.disGroups = disGroups;
+        this.trans = trans;
+        this.customers = customers;
+        this.auths = auths;
+        this.tranService = tranService;
     }
 
     /** CBACT04C: monthly interest = TRAN-CAT-BAL * rate / 1200 on every category balance;
@@ -41,7 +46,8 @@ public class BatchService {
     public Map<String, Object> interestCalculation() {
         List<TranCatBal> all = catBals.findAll(
                 Sort.by("acctId").and(Sort.by("typeCd")).and(Sort.by("catCd")));
-        int processed = 0, intTrans = 0;
+        int processed = 0;
+        int intTrans = 0;
         BigDecimal grandTotal = BigDecimal.ZERO;
         Long lastAcct = null;
         BigDecimal acctInt = BigDecimal.ZERO;

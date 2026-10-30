@@ -3,7 +3,6 @@ package com.carddemo.service;
 import com.carddemo.config.ApiException;
 import com.carddemo.model.UserSecurity;
 import com.carddemo.repo.UserSecurityRepository;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -55,8 +54,11 @@ public class UserService {
         if (userId.length() > 8) throw ApiException.badRequest("User ID must be 8 characters or less");
         if (users.existsById(userId)) throw ApiException.badRequest("User ID already exist...");
         UserSecurity u = new UserSecurity();
-        u.setUserId(userId); u.setFirstName(first); u.setLastName(last);
-        u.setPassword(pwd); u.setUserType(type);
+        u.setUserId(userId);
+        u.setFirstName(first);
+        u.setLastName(last);
+        u.setPassword(pwd);
+        u.setUserType(type);
         users.save(u);
         return Map.of("message", "User " + userId + " has been added ...", "user", publicView(u));
     }

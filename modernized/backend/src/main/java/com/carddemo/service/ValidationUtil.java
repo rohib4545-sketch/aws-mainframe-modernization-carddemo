@@ -17,7 +17,9 @@ public final class ValidationUtil {
 
     public static boolean isValidDate(String s) {
         if (s == null || !s.matches("\\d{4}-\\d{2}-\\d{2}")) return false;
-        try { LocalDate.parse(s, FMT); return true; }
+        try { LocalDate.parse(s, FMT);
+        return true;
+        }
         catch (Exception e) { return false; }
     }
 

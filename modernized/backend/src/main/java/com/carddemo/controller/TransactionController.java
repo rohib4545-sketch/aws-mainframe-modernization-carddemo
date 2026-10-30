@@ -17,7 +17,9 @@ public class TransactionController {
 
     public TransactionController(AuthService auth, TransactionService trans,
                                  @Value("${carddemo.page-size.transactions:10}") int pageSize) {
-        this.auth = auth; this.trans = trans; this.pageSize = pageSize;
+        this.auth = auth;
+        this.trans = trans;
+        this.pageSize = pageSize;
     }
 
     @GetMapping("/transactions")
