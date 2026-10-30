@@ -37,14 +37,17 @@ describe('session helpers', () => {
     setSession(SESSION)
     applyRoleTheme()
     expect(document.body.classList.contains('theme-user')).toBe(true)
+    expect(document.body.classList.contains('theme-admin')).toBe(false)
 
     setSession({ ...SESSION, userType: 'A' })
     applyRoleTheme()
     expect(document.body.classList.contains('theme-user')).toBe(false)
+    expect(document.body.classList.contains('theme-admin')).toBe(true)
 
     clearSession()
     applyRoleTheme()
     expect(document.body.classList.contains('theme-user')).toBe(false)
+    expect(document.body.classList.contains('theme-admin')).toBe(false)
   })
 })
 
