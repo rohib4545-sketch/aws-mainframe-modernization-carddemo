@@ -9,9 +9,10 @@ public class DisclosureGroupId implements Serializable {
     private String tranTypeCd;
     private Integer tranCatCd;
     public DisclosureGroupId() {}
-    public DisclosureGroupId(String g, String t, Integer c) { acctGroupId = g;
-    tranTypeCd = t;
-    tranCatCd = c;
+    public DisclosureGroupId(String g, String t, Integer c) {
+        acctGroupId = g;
+        tranTypeCd = t;
+        tranCatCd = c;
     }
     @Override public boolean equals(Object o) {
         if (!(o instanceof DisclosureGroupId x)) return false;

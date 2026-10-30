@@ -38,11 +38,12 @@ public class AuthorizationService {
             BigDecimal apprAmt = BigDecimal.ZERO;
             BigDecimal declAmt = BigDecimal.ZERO;
             for (PendingAuth a : e.getValue()) {
-                if ("00".equals(a.getAuthRespCode())) { apprCnt++;
-                apprAmt = apprAmt.add(a.getApprovedAmt());
-                }
-                else { declCnt++;
-                declAmt = declAmt.add(a.getTransactionAmt());
+                if ("00".equals(a.getAuthRespCode())) {
+                    apprCnt++;
+                    apprAmt = apprAmt.add(a.getApprovedAmt());
+                } else {
+                    declCnt++;
+                    declAmt = declAmt.add(a.getTransactionAmt());
                 }
             }
             Map<String, Object> s = new HashMap<>();

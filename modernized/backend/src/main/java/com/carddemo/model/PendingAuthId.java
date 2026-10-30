@@ -8,8 +8,9 @@ public class PendingAuthId implements Serializable {
     private String cardNum;
     private String authTs;
     public PendingAuthId() {}
-    public PendingAuthId(String c, String t) { cardNum = c;
-    authTs = t;
+    public PendingAuthId(String c, String t) {
+        cardNum = c;
+        authTs = t;
     }
     @Override public boolean equals(Object o) {
         if (!(o instanceof PendingAuthId x)) return false;
