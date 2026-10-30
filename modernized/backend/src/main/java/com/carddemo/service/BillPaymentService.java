@@ -6,7 +6,6 @@ import com.carddemo.repo.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,8 +21,10 @@ public class BillPaymentService {
 
     public BillPaymentService(AccountRepository accounts, CardXrefRepository xrefs,
                               TranRecordRepository trans, TransactionService tranService) {
-        this.accounts = accounts; this.xrefs = xrefs;
-        this.trans = trans; this.tranService = tranService;
+        this.accounts = accounts;
+        this.xrefs = xrefs;
+        this.trans = trans;
+        this.tranService = tranService;
     }
 
     public Map<String, Object> view(Long acctId) {

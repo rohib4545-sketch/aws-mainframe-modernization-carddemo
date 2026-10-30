@@ -16,7 +16,8 @@ public class ReferenceService {
     private final TranCategoryRepository tranCats;
 
     public ReferenceService(TranTypeRepository tranTypes, TranCategoryRepository tranCats) {
-        this.tranTypes = tranTypes; this.tranCats = tranCats;
+        this.tranTypes = tranTypes;
+        this.tranCats = tranCats;
     }
 
     public List<TranType> listTypes() { return tranTypes.findAll(); }
@@ -32,7 +33,8 @@ public class ReferenceService {
         if (ValidationUtil.isBlank(desc)) throw ApiException.badRequest("Description can NOT be empty");
         if (tranTypes.existsById(cd)) throw ApiException.badRequest("Tran Type already exist...");
         TranType t = new TranType();
-        t.setTypeCd(cd); t.setDesc(desc.trim());
+        t.setTypeCd(cd);
+        t.setDesc(desc.trim());
         return tranTypes.save(t);
     }
 

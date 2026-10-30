@@ -1,6 +1,5 @@
 package com.carddemo.controller;
 
-import com.carddemo.config.ApiException;
 import com.carddemo.service.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,9 @@ public class AccountController {
     private final BillPaymentService billPay;
 
     public AccountController(AuthService auth, AccountService accounts, BillPaymentService billPay) {
-        this.auth = auth; this.accounts = accounts; this.billPay = billPay;
+        this.auth = auth;
+        this.accounts = accounts;
+        this.billPay = billPay;
     }
 
     /** Account View — accepts acctId path or ?cardNum= lookup. */

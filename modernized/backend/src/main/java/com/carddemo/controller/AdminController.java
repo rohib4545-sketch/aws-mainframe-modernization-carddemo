@@ -19,7 +19,10 @@ public class AdminController {
     public AdminController(AuthService auth, UserService users, ReferenceService refs,
                            BatchService batch,
                            @Value("${carddemo.page-size.users:10}") int pageSize) {
-        this.auth = auth; this.users = users; this.refs = refs; this.batch = batch;
+        this.auth = auth;
+        this.users = users;
+        this.refs = refs;
+        this.batch = batch;
         this.pageSize = pageSize;
     }
 

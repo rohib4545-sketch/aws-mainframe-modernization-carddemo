@@ -25,8 +25,12 @@ public class TransactionService {
     public TransactionService(TranRecordRepository trans, TranCatBalRepository catBals,
                               CardXrefRepository xrefs, AccountRepository accounts,
                               TranTypeRepository tranTypes, TranCategoryRepository tranCats) {
-        this.trans = trans; this.catBals = catBals; this.xrefs = xrefs;
-        this.accounts = accounts; this.tranTypes = tranTypes; this.tranCats = tranCats;
+        this.trans = trans;
+        this.catBals = catBals;
+        this.xrefs = xrefs;
+        this.accounts = accounts;
+        this.tranTypes = tranTypes;
+        this.tranCats = tranCats;
     }
 
     /** Browse transactions starting at tranId (or lowest), 10 per page. */
@@ -67,12 +71,15 @@ public class TransactionService {
         String procDate = AccountService.str(in, "procDate");
         String confirm = AccountService.str(in, "confirm").toUpperCase();
 
-        if (acctStr.isEmpty() && cardNum.isEmpty())
+        if (acctStr.isEmpty() && cardNum.isEmpty()) {
             throw ApiException.badRequest("Account or Card Number must be entered");
-        if (!acctStr.isEmpty() && !ValidationUtil.isNumeric(acctStr))
+        }
+        if (!acctStr.isEmpty() && !ValidationUtil.isNumeric(acctStr)) {
             throw ApiException.badRequest("Account ID must be Numeric");
-        if (!cardNum.isEmpty() && !ValidationUtil.isNumeric(cardNum))
+        }
+        if (!cardNum.isEmpty() && !ValidationUtil.isNumeric(cardNum)) {
             throw ApiException.badRequest("Card Number must be Numeric");
+        }
         if (typeCd.isEmpty()) throw ApiException.badRequest("Type CD can NOT be empty");
         if (catCd.isEmpty()) throw ApiException.badRequest("Category CD can NOT be empty");
         if (source.isEmpty()) throw ApiException.badRequest("Source can NOT be empty");
@@ -87,12 +94,15 @@ public class TransactionService {
 
         if (!ValidationUtil.isNumeric(typeCd)) throw ApiException.badRequest("Type CD must be Numeric");
         if (!ValidationUtil.isNumeric(catCd)) throw ApiException.badRequest("Category CD must be Numeric");
-        if (!amtStr.matches("-?\\d{1,8}(\\.\\d{1,2})?"))
+        if (!amtStr.matches("-?\\d{1,8}(\\.\\d{1,2})?")) {
             throw ApiException.badRequest("Amount should be in format -99999999.99");
-        if (!origDate.matches("\\d{4}-\\d{2}-\\d{2}"))
+        }
+        if (!origDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
             throw ApiException.badRequest("Orig Date should be in format YYYY-MM-DD");
-        if (!procDate.matches("\\d{4}-\\d{2}-\\d{2}"))
+        }
+        if (!procDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
             throw ApiException.badRequest("Proc Date should be in format YYYY-MM-DD");
+        }
         if (!ValidationUtil.isValidDate(origDate)) throw ApiException.badRequest("Orig Date - Not a valid date");
         if (!ValidationUtil.isValidDate(procDate)) throw ApiException.badRequest("Proc Date - Not a valid date");
         if (!ValidationUtil.isNumeric(merchantId)) throw ApiException.badRequest("Merchant ID must be Numeric");
@@ -150,7 +160,9 @@ public class TransactionService {
         TranCatBalId balId = new TranCatBalId(acctId, typeCd, Integer.parseInt(catCd));
         TranCatBal bal = catBals.findById(balId).orElseGet(() -> {
             TranCatBal b = new TranCatBal();
-            b.setAcctId(acctId); b.setTypeCd(typeCd); b.setCatCd(Integer.parseInt(catCd));
+            b.setAcctId(acctId);
+            b.setTypeCd(typeCd);
+            b.setCatCd(Integer.parseInt(catCd));
             b.setBal(BigDecimal.ZERO);
             return b;
         });
@@ -175,14 +187,16 @@ public class TransactionService {
     public String nextTranId() {
         String max = trans.maxTranId();
         long n = 0;
-        try { n = Long.parseLong(max == null ? "0" : max.trim()); } catch (NumberFormatException ignored) {}
+        try { n = Long.parseLong(max == null ? "0" : max.trim()); } catch (NumberFormatException ignored) { /* unparsable ids count as 0 */ }
         return String.format("%016d", n + 1);
     }
 
     /** CORPT00C: monthly = current month, yearly = current year, custom = explicit range. */
     public Map<String, Object> report(String kind, String startDate, String endDate) {
         LocalDate today = LocalDate.now();
-        String start, end, name;
+        String start;
+        String end;
+        String name;
         switch (kind == null ? "" : kind.toLowerCase()) {
             case "monthly" -> {
                 YearMonth ym = YearMonth.from(today);
@@ -199,7 +213,9 @@ public class TransactionService {
                 if (!ValidationUtil.isValidDate(startDate)) throw ApiException.badRequest("Start Date - Not a valid date");
                 if (!ValidationUtil.isValidDate(endDate)) throw ApiException.badRequest("End Date - Not a valid date");
                 if (endDate.compareTo(startDate) < 0) throw ApiException.badRequest("End Date must not be before Start Date");
-                start = startDate; end = endDate; name = "Custom";
+                start = startDate;
+                end = endDate;
+                name = "Custom";
             }
             default -> throw ApiException.badRequest("Please select a report type (monthly, yearly or custom)");
         }

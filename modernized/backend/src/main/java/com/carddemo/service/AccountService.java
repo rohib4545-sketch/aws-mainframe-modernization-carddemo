@@ -20,8 +20,10 @@ public class AccountService {
 
     public AccountService(AccountRepository accounts, CustomerRepository customers,
                           CardXrefRepository xrefs, CardRepository cards) {
-        this.accounts = accounts; this.customers = customers;
-        this.xrefs = xrefs; this.cards = cards;
+        this.accounts = accounts;
+        this.customers = customers;
+        this.xrefs = xrefs;
+        this.cards = cards;
     }
 
     private Account find(Long acctId) {

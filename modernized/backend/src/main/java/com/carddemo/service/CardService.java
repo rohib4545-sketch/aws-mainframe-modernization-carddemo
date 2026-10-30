@@ -21,8 +21,10 @@ public class CardService {
 
     public CardService(CardRepository cards, CardXrefRepository xrefs,
                        AccountRepository accounts, CustomerRepository customers) {
-        this.cards = cards; this.xrefs = xrefs;
-        this.accounts = accounts; this.customers = customers;
+        this.cards = cards;
+        this.xrefs = xrefs;
+        this.accounts = accounts;
+        this.customers = customers;
     }
 
     /** Browse cards with optional 11-digit account filter and 16-digit card filter, 7 per page. */

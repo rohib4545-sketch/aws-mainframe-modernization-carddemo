@@ -18,7 +18,9 @@ public class AuthorizationService {
 
     public AuthorizationService(PendingAuthRepository auths, CardXrefRepository xrefs,
                                 AccountRepository accounts) {
-        this.auths = auths; this.xrefs = xrefs; this.accounts = accounts;
+        this.auths = auths;
+        this.xrefs = xrefs;
+        this.accounts = accounts;
     }
 
     /** Summary per account: approved/declined counts and amounts (CIPAUSMY). */
@@ -31,11 +33,17 @@ public class AuthorizationService {
 
         List<Map<String, Object>> summaries = new ArrayList<>();
         for (var e : byAcct.entrySet()) {
-            int apprCnt = 0, declCnt = 0;
-            BigDecimal apprAmt = BigDecimal.ZERO, declAmt = BigDecimal.ZERO;
+            int apprCnt = 0;
+            int declCnt = 0;
+            BigDecimal apprAmt = BigDecimal.ZERO;
+            BigDecimal declAmt = BigDecimal.ZERO;
             for (PendingAuth a : e.getValue()) {
-                if ("00".equals(a.getAuthRespCode())) { apprCnt++; apprAmt = apprAmt.add(a.getApprovedAmt()); }
-                else { declCnt++; declAmt = declAmt.add(a.getTransactionAmt()); }
+                if ("00".equals(a.getAuthRespCode())) { apprCnt++;
+                apprAmt = apprAmt.add(a.getApprovedAmt());
+                }
+                else { declCnt++;
+                declAmt = declAmt.add(a.getTransactionAmt());
+                }
             }
             Map<String, Object> s = new HashMap<>();
             s.put("acctId", e.getKey());

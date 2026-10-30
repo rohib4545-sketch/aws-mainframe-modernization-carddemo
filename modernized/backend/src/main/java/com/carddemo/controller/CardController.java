@@ -17,7 +17,9 @@ public class CardController {
 
     public CardController(AuthService auth, CardService cards,
                           @Value("${carddemo.page-size.cards:7}") int pageSize) {
-        this.auth = auth; this.cards = cards; this.pageSize = pageSize;
+        this.auth = auth;
+        this.cards = cards;
+        this.pageSize = pageSize;
     }
 
     @GetMapping

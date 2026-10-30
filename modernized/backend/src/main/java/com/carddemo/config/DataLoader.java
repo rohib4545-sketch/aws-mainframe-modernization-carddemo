@@ -34,9 +34,16 @@ public class DataLoader implements CommandLineRunner {
                       TranCatBalRepository catBals, DisclosureGroupRepository disGroups,
                       TranTypeRepository tranTypes, TranCategoryRepository tranCats,
                       PendingAuthRepository auths) {
-        this.users = users; this.accounts = accounts; this.cards = cards; this.xrefs = xrefs;
-        this.customers = customers; this.trans = trans; this.catBals = catBals;
-        this.disGroups = disGroups; this.tranTypes = tranTypes; this.tranCats = tranCats;
+        this.users = users;
+        this.accounts = accounts;
+        this.cards = cards;
+        this.xrefs = xrefs;
+        this.customers = customers;
+        this.trans = trans;
+        this.catBals = catBals;
+        this.disGroups = disGroups;
+        this.tranTypes = tranTypes;
+        this.tranCats = tranCats;
         this.auths = auths;
     }
 
