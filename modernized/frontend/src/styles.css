@@ -48,3 +48,6 @@ body.theme-user .ftr .pf { color: #1a7f37; }
 body.theme-user button { background: #2da44e; border-color: #1a7f37; color: #fff; }
 body.theme-user button:hover:not(:disabled) { background: #2c974b; }
 body.theme-user button:disabled { opacity: 0.45; }
+body.theme-user .msg.err { color: #8b0000; }
+body.theme-user .msg.ok { color: #0b4d1f; }
+body.theme-user tr:hover td, body.theme-user .menu-opts div:hover { background: #a6a6a6; color: #1b1f24; }
