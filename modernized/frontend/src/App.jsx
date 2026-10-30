@@ -1,6 +1,6 @@
-import React from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { getSession, isAdmin } from './api'
+import React, { useEffect } from 'react'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { getSession, isAdmin, applyRoleTheme } from './api'
 import Login from './pages/Login'
 import { UserMenu, AdminMenu } from './pages/Menus'
 import { AccountView, AccountUpdate } from './pages/Accounts'
@@ -17,6 +17,11 @@ function guard(el, adminOnly = false) {
 }
 
 export default function App() {
+  // Session changes always coincide with navigation (login/logout), so
+  // re-apply the role theme whenever the route changes.
+  const location = useLocation()
+  useEffect(applyRoleTheme, [location])
+
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest'
-import { api, ApiError, getSession, setSession, clearSession, getToken, isAdmin } from './api'
+import { api, ApiError, getSession, setSession, clearSession, getToken, isAdmin, applyRoleTheme } from './api'
 
 const SESSION = { token: 'tok-123', userId: 'USER0001', userType: 'U', firstName: 'TEST' }
 
@@ -31,6 +31,20 @@ describe('session helpers', () => {
     expect(isAdmin()).toBe(true)
     setSession({ ...SESSION, userType: 'U' })
     expect(isAdmin()).toBe(false)
+  })
+
+  it('applyRoleTheme sets theme-user on body only for userType U', () => {
+    setSession(SESSION)
+    applyRoleTheme()
+    expect(document.body.classList.contains('theme-user')).toBe(true)
+
+    setSession({ ...SESSION, userType: 'A' })
+    applyRoleTheme()
+    expect(document.body.classList.contains('theme-user')).toBe(false)
+
+    clearSession()
+    applyRoleTheme()
+    expect(document.body.classList.contains('theme-user')).toBe(false)
   })
 })
 
