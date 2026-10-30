@@ -41,7 +41,7 @@ export function UserList() {
       <Pager page={page} hasPrev={d.hasPrevPage} hasNext={d.hasNextPage}
              onPage={p => { setPage(p); load(p) }}
              startId={startId} onStartId={v => { setStartId(v); setPage(0); load(0, v) }} startLabel="User ID" />
-      <div style={{ color: '#6e7681', fontSize: 12 }}>U=Update  D=Delete</div>
+      <div className="legend">U=Update  D=Delete</div>
     </Screen>
   )
 }

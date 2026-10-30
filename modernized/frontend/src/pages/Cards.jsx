@@ -45,7 +45,7 @@ export function CardList() {
       </table>
       <Pager page={page} hasPrev={d.hasPrevPage} hasNext={d.hasNextPage}
              onPage={p => { setPage(p); load(p) }} />
-      <div style={{ color: '#6e7681', fontSize: 12 }}>S=View  U=Update</div>
+      <div className="legend">S=View  U=Update</div>
     </Screen>
   )
 }

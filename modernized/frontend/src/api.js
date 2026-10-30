@@ -15,10 +15,13 @@ export function clearSession() {
 export function getToken() { return sessionStorage.getItem(TOKEN_KEY) }
 export function isAdmin() { return getSession()?.userType === 'A' }
 
-/** Applies the regular-user theme (grey background, green buttons) to <body>.
- *  Admin ('A') sessions and signed-out state keep the default terminal theme. */
+/** Applies the role theme to <body>: regular users ('U') get the grey/green
+ *  theme, admins ('A') get the red/black theme. Signed-out state keeps the
+ *  default terminal theme. */
 export function applyRoleTheme() {
-  document.body.classList.toggle('theme-user', getSession()?.userType === 'U')
+  const t = getSession()?.userType
+  document.body.classList.toggle('theme-user', t === 'U')
+  document.body.classList.toggle('theme-admin', t === 'A')
 }
 
 export class ApiError extends Error {
