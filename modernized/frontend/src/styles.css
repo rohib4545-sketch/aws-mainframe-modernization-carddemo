@@ -35,3 +35,19 @@ h3.sect { color: #d2a8ff; border-bottom: 1px solid #30363d; padding-bottom: 4px;
 a { color: #58a6ff; }
 pre.stmt { background: #0d1117; border: 1px solid #30363d; padding: 12px; overflow-x: auto; color: #7ee787; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; }
+
+/* Regular-user theme (userType 'U'): full grey background + green buttons.
+   Admin sessions keep the default dark terminal theme. */
+body.theme-user { background: #808080; color: #1b1f24; }
+body.theme-user .screen { background: #808080; border-color: #5c5c5c; }
+body.theme-user .hdr { border-color: #5c5c5c; }
+body.theme-user .hdr .dim, body.theme-user .hdr .t2, body.theme-user .ftr,
+body.theme-user .field label, body.theme-user .msg { color: #2f363d; }
+body.theme-user .msg, body.theme-user .ftr { border-top-color: #5c5c5c; }
+body.theme-user .ftr .pf { color: #1a7f37; }
+body.theme-user button { background: #2da44e; border-color: #1a7f37; color: #fff; }
+body.theme-user button:hover:not(:disabled) { background: #2c974b; }
+body.theme-user button:disabled { opacity: 0.45; }
+body.theme-user .msg.err { color: #8b0000; }
+body.theme-user .msg.ok { color: #0b4d1f; }
+body.theme-user tr:hover td, body.theme-user .menu-opts div:hover { background: #a6a6a6; color: #1b1f24; }
