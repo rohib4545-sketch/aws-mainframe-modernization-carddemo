@@ -153,8 +153,8 @@ jobs:
           java -jar target/carddemo-backend-*.jar > backend.log 2>&1 &
           for i in $(seq 1 90); do
             code=$(curl -s -o /dev/null -w '%{http_code}' -X POST http://localhost:8080/api/auth/login \
-                     -H 'Content-Type: application/json' -d '{}')
-            [ "$code" != "000" ] && break
+                     -H 'Content-Type: application/json' -d '{}' || true)
+            if [ "$code" != "000" ]; then break; fi
             sleep 2
           done
           sleep 5   # DataLoader finishes seeding shortly after the port opens
